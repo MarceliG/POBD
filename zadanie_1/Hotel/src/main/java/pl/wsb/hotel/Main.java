@@ -1,8 +1,6 @@
-import java.time.LocalDate;
+package pl.wsb.hotel;
 
-import main.java.Client;
-import main.java.Room;
-import main.java.RoomReservation;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,8 +10,8 @@ public class Main {
         System.out.println(client.getFullName());
         System.out.println(client.getAllInformation());
         System.out.println("-----");
-        
-        Room room = new Room("1", "description", 8.0, 1, false);
+
+        Room room = new Room("1", 8.0, 1, false);
         System.out.println("Room: ");
         System.out.println(room.getAllInformation());
         System.out.println("-----");

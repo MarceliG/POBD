@@ -1,6 +1,5 @@
-package main.java;
+package pl.wsb.hotel;
 
-import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -32,11 +31,11 @@ public class Client {
     // Display all arguments for testing
     public String getAllInformation() {
         return String.format(
-            "id: %s\nfirst name: %s\nlast name: %s\nbirthdate: %s",
-            this.id,
-            this.firstName,
-            this.lastName,
-            this.birthDate
+                "id: %s\nfirst name: %s\nlast name: %s\nbirthdate: %s",
+                this.id,
+                this.firstName,
+                this.lastName,
+                this.birthDate
         );
     }
 }
