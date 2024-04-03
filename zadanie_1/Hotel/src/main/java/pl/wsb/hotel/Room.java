@@ -1,5 +1,7 @@
 package pl.wsb.hotel;
 
+import java.lang.reflect.Field;
+
 public class Room {
     String id;
     double area;
@@ -15,12 +17,18 @@ public class Room {
 
     // Display all arguments for testing
     public String getAllInformation() {
-        return String.format(
-            "id: %s\narea: %s\nfloor: %s\nhas king size bed: %s",
-            this.id,
-            this.area,
-            this.floor,
-            this.hasKingSizeBed
-        );
+        StringBuilder sb = new StringBuilder();
+        Class<?> thisClass = this.getClass();
+        Field[] fields = thisClass.getDeclaredFields();
+
+        for (Field field : fields) {
+            try {
+                Object value = field.get(this);
+                sb.append(field.getName()).append(": ").append(value).append("\n");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
     }
 }

@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        Client client = new Client("1", "Adam", "Smith", LocalDate.of(2000, 1, 1));
+        Client client = new Client("1", "Adam", "Smith", LocalDate.of(1723, 6, 5), "Edynburg 123 Street",
+                "123-456-7890", "adam.smith@example.com", "ABCD1234", Preference.NONSMOKING);
         System.out.println("Client: ");
         System.out.println(client.getAge());
         System.out.println(client.getFullName());

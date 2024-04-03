@@ -1,5 +1,6 @@
 package pl.wsb.hotel;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -8,20 +9,106 @@ public class Client {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
+    private int age;
+    private String address;
+    private String phoneNumber;
+    private String email;
+    private String idCardNumber;
+    private Preference roomPreference;
 
-    public Client(String id, String firstName, String lastName, LocalDate birthDate) {
+    public Client(String id, String firstName, String lastName, LocalDate birthDate, String address, String phoneNumber,
+            String email, String idCardNumber, Preference roomPreference) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.idCardNumber = idCardNumber;
+        this.roomPreference = roomPreference;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getIdCardNumber() {
+        return idCardNumber;
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public Preference getRoomPreference() {
+        return roomPreference;
+    }
+
+    public void setRoomPreference(Preference roomPreference) {
+        this.roomPreference = roomPreference;
+    }
+
 
     public int getAge() {
         if (this.birthDate == null) {
             return 0;
         }
         LocalDate currentDate = LocalDate.now();
-        return Period.between(this.birthDate, currentDate).getYears();
+        this.age = Period.between(this.birthDate, currentDate).getYears();
+        return this.age;
     }
 
     public String getFullName() {
@@ -30,12 +117,18 @@ public class Client {
 
     // Display all arguments for testing
     public String getAllInformation() {
-        return String.format(
-                "id: %s\nfirst name: %s\nlast name: %s\nbirthdate: %s",
-                this.id,
-                this.firstName,
-                this.lastName,
-                this.birthDate
-        );
+        StringBuilder sb = new StringBuilder();
+        Class<?> thisClass = this.getClass();
+        Field[] fields = thisClass.getDeclaredFields();
+
+        for (Field field : fields) {
+            try {
+                Object value = field.get(this);
+                sb.append(field.getName()).append(": ").append(value).append("\n");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
     }
 }
