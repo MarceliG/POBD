@@ -12,7 +12,7 @@ public class Main {
         System.out.println(client.getAllInformation());
         System.out.println("-----");
 
-        Room room = new Room("1", 8.0, 1, false);
+        Room room = new Room("1", 8.0, 1, false, 2, true, true, true, true);
         System.out.println("Room: ");
         System.out.println(room.getAllInformation());
         System.out.println("-----");
