@@ -1,6 +1,6 @@
 package pl.wsb;
 
-public enum PPremiumAccountType {
+public enum PremiumAccountType {
     PREMIUM,
     PREMIUM_PLUS
 }
