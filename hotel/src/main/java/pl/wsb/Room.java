@@ -1,4 +1,4 @@
-package pl.wsb.hotel;
+package pl.wsb;
 
 import java.lang.reflect.Field;
 
