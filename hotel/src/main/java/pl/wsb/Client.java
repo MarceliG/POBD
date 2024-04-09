@@ -6,8 +6,8 @@ import java.time.Period;
 
 public class Client {
     private String id;
-    private String firstName;
-    private String lastName;
+    protected String firstName;
+    protected String lastName;
     private LocalDate birthDate;
     private int age;
     private String address;
