@@ -14,7 +14,7 @@ public class Main {
         System.out.println("-----");
 
         PremiumClient clientPremium = new PremiumClient("2", "Adam", "Smitch",LocalDate.of(1723, 6, 5), "Edynburg 123 Street",
-                "123-456-7890", "adam.smith@example.com", "ABCD1234", Preference.NONSMOKING, premiumAccountType.PREMIUM);
+                "123-456-7890", "adam.smith@example.com", "ABCD1234", Preference.NONSMOKING, PremiumAccountType.PREMIUM);
         System.out.println("Client Premium: ");
         System.out.println(clientPremium.getAge());
         System.out.println(clientPremium.getFullName());
