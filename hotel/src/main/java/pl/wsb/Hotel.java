@@ -1,13 +1,14 @@
 package pl.wsb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Hotel {
     private String name;
-    private ArrayList<SpecialService> specialServices;
-    private ArrayList<Client> clients;
-    private ArrayList<RoomReservation> reservations;
-    private ArrayList<Room> rooms;
+    private List<SpecialService> specialServices;
+    private List<Client> clients;
+    private List<RoomReservation> reservations;
+    private List<Room> rooms;
 
     public Hotel(String name, SpecialService specialService, Client client, RoomReservation reservation, Room room) {
         this.name = name;
@@ -33,35 +34,35 @@ public class Hotel {
         this.name = name;
     }
 
-    public ArrayList<SpecialService> getSpecialServices() {
+    public List<SpecialService> getSpecialServices() {
         return this.specialServices;
     }
 
-    public void setSpecialServices(ArrayList<SpecialService> specialServices) {
+    public void setSpecialServices(List<SpecialService> specialServices) {
         this.specialServices = specialServices;
     }
 
-    public ArrayList<Client> getClients() {
+    public List<Client> getClients() {
         return this.clients;
     }
 
-    public void setClients(ArrayList<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
-    public ArrayList<RoomReservation> getReservations() {
+    public List<RoomReservation> getReservations() {
         return this.reservations;
     }
 
-    public void setReservations(ArrayList<RoomReservation> reservations) {
+    public void setReservations(List<RoomReservation> reservations) {
         this.reservations = reservations;
     }
 
-    public void setRooms(ArrayList<Room> rooms) {
+    public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 
-    public ArrayList<Room> getRooms() {
+    public List<Room> getRooms() {
         return this.rooms;
     }
 
