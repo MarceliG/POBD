@@ -21,6 +21,11 @@ public class RoomReservation {
             this.isConfirmed = true;
         }
     }
+    
+    @Override
+    public String toString() {
+        return "Date: " + date + ", " + room;
+    }
 
     public String getAllInformation() {
         StringBuilder sb = new StringBuilder();
