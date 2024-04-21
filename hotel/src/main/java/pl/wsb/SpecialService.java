@@ -9,7 +9,7 @@ public abstract class SpecialService {
         this.name = name;
     }
 
-    public abstract void orderService();
+    public abstract String orderService();
 
     public abstract double calculateCost(int quantity);
 

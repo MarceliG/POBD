@@ -118,6 +118,11 @@ public class Client {
         return String.format("%s %s", this.firstName, this.lastName);
     }
 
+    @Override
+    public String toString() {
+        return "Client: " + id;
+    }
+
     // Display all arguments for child and parent for testing
     public String getAllInformation() {
         StringBuilder sb = new StringBuilder();

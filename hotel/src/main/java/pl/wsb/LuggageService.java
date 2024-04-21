@@ -12,8 +12,9 @@ public class LuggageService extends SpecialService {
         this.cost = 35.00;
     }
 
-    public void orderService()  {
-        System.out.println("Hotel aktualnie przechowuje bagaż klienta");
+    public String orderService() {
+        String information = "Hotel is currently storing customer luggage";
+        return information;
     }
 
     public double calculateCost(int quantity) {
@@ -24,10 +25,15 @@ public class LuggageService extends SpecialService {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
 
         // Not avaliable in monday and saturday
-        if(dayOfWeek == DayOfWeek.MONDAY || dayOfWeek == DayOfWeek.SATURDAY) {
+        if (dayOfWeek == DayOfWeek.MONDAY || dayOfWeek == DayOfWeek.SATURDAY) {
             return false;
         } else {
             return true;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "" + name;
     }
 }

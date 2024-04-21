@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public class PremiumClient extends Client {
     private PremiumAccountType premiumAccountType;
 
-    public PremiumClient(String id, String firstName, String lastName, LocalDate birthDate, String address, String phoneNumber,
-                         String email, String idCardNumber, Preference roomPreference, PremiumAccountType premiumAccountType
-    ) {
+    public PremiumClient(String id, String firstName, String lastName, LocalDate birthDate, String address,
+            String phoneNumber, String email, String idCardNumber, Preference roomPreference,
+            PremiumAccountType premiumAccountType) {
         super(id, firstName, lastName, birthDate, address, phoneNumber, email, idCardNumber, roomPreference);
         this.premiumAccountType = premiumAccountType;
     }

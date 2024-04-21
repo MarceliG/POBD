@@ -99,6 +99,11 @@ public class Room {
         return this.hasTV;
     }
 
+    @Override
+    public String toString() {
+        return "Room number: " + id;
+    }
+
 
     // Display all arguments for testing
     public String getAllInformation() {

@@ -1,7 +1,9 @@
 package pl.wsb;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Hotel {
     private String name;
@@ -10,9 +12,13 @@ public class Hotel {
     private List<RoomReservation> reservations;
     private List<Room> rooms;
 
-    public Hotel(String name, SpecialService specialService, Client client, RoomReservation reservation, Room room) {
+    public Hotel(String name, List<SpecialService> specialServices, Client client, RoomReservation reservation,
+            Room room) {
         this.name = name;
-        this.specialServices.add(specialService);
+        this.specialServices = new ArrayList<>(specialServices);
+        this.clients = new ArrayList<>();
+        this.reservations = new ArrayList<>();
+        this.rooms = new ArrayList<>();
         this.clients.add(client);
         this.reservations.add(reservation);
         this.rooms.add(room);
@@ -66,5 +72,20 @@ public class Hotel {
         return this.rooms;
     }
 
+    // Display all arguments for testing
+    public String getAllInformation() {
+        StringBuilder sb = new StringBuilder();
+        Class<?> thisClass = this.getClass();
+        Field[] fields = thisClass.getDeclaredFields();
 
+        for (Field field : fields) {
+            try {
+                Object value = field.get(this);
+                sb.append(field.getName()).append(": ").append(value).append("\n");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
 }
