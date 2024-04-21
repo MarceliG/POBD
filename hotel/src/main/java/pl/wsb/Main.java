@@ -47,6 +47,7 @@ public class Main {
         LuggageService luggageService = new LuggageService("luggage_service");
         System.out.println(luggageService.name);
         System.out.println(luggageService.orderService());
+        System.out.println("-----");
 
         Hotel hotel_1 = new Hotel("hotel_1");
         System.out.println(hotel_1.getAllInformation());
