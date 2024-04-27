@@ -1,7 +1,8 @@
-package pl.wsb;
+package pl.wsb.room;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import pl.wsb.client.Client;
 
 public class RoomReservation {
     private LocalDate date;
@@ -21,7 +22,7 @@ public class RoomReservation {
             this.isConfirmed = true;
         }
     }
-    
+
     @Override
     public String toString() {
         return "Date: " + date + ", " + room;

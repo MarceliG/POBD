@@ -1,4 +1,4 @@
-package pl.wsb;
+package pl.wsb.client;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -129,7 +129,7 @@ public class Client {
         List<Field> fields = new ArrayList<>();
 
         Class<?> classItem = this.getClass();
-        while(classItem != null) {
+        while (classItem != null) {
             fields.addAll(Arrays.asList(classItem.getDeclaredFields()));
             classItem = classItem.getSuperclass();
         }

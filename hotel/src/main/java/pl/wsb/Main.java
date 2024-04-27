@@ -3,6 +3,15 @@ package pl.wsb;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import pl.wsb.client.Client;
+import pl.wsb.client.Preference;
+import pl.wsb.client.PremiumAccountType;
+import pl.wsb.client.PremiumClient;
+import pl.wsb.room.Room;
+import pl.wsb.room.RoomReservation;
+import pl.wsb.service.LuggageService;
+import pl.wsb.service.SpecialService;
+import pl.wsb.service.TimeService;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,7 +54,6 @@ public class Main {
         System.out.println("-----");
 
         LuggageService luggageService = new LuggageService("luggage_service");
-        System.out.println(luggageService.name);
         System.out.println(luggageService.orderService());
         System.out.println("-----");
 

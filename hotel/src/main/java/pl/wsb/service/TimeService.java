@@ -1,4 +1,4 @@
-package pl.wsb;
+package pl.wsb.service;
 
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;

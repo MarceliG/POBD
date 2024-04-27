@@ -3,6 +3,10 @@ package pl.wsb;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import pl.wsb.client.Client;
+import pl.wsb.room.Room;
+import pl.wsb.room.RoomReservation;
+import pl.wsb.service.SpecialService;
 
 
 public class Hotel {

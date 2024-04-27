@@ -1,4 +1,4 @@
-package pl.wsb;
+package pl.wsb.client;
 
 public enum PremiumAccountType {
     PREMIUM,

@@ -1,4 +1,4 @@
-package pl.wsb;
+package pl.wsb.client;
 
 import java.time.LocalDate;
 
