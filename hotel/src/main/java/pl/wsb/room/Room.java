@@ -12,10 +12,11 @@ public class Room {
     private boolean hasBalcony;
     private boolean hasMinibar;
     private boolean hasTV;
+    private String description;
 
 
     public Room(String id, double area, int floor, boolean hasKingSizeBed, int countBed, boolean hasToilet,
-            boolean hasBalcony, boolean hasMinibar, boolean hasTV) {
+            boolean hasBalcony, boolean hasMinibar, boolean hasTV, String description) {
         this.id = id;
         this.area = area;
         this.floor = floor;
@@ -25,6 +26,7 @@ public class Room {
         this.hasBalcony = hasBalcony;
         this.hasMinibar = hasMinibar;
         this.hasTV = hasTV;
+        this.description = description;
     }
 
     public String getId() {
@@ -97,6 +99,14 @@ public class Room {
 
     public boolean getHasTV() {
         return this.hasTV;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
