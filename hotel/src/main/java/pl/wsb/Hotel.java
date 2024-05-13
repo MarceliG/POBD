@@ -151,7 +151,7 @@ public class Hotel implements HotelCapability {
             }
         }
 
-        return Float.NaN;
+        return Double.NaN;
     }
 
     public int getNumberOfRoomsWithKingSizeBed(int floor) {
