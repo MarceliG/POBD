@@ -3,7 +3,6 @@ package pl.wsb.room;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.UUID;
-
 import pl.wsb.client.Client;
 
 public class RoomReservation {
@@ -33,6 +32,10 @@ public class RoomReservation {
         if (!this.isConfirmed) {
             this.isConfirmed = true;
         }
+    }
+
+    public boolean isConfirmed() {
+        return this.isConfirmed;
     }
 
     public void setDate(LocalDate date) {

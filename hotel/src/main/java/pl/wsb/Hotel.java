@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-
 import pl.wsb.client.Client;
-import pl.wsb.client.Preference;
 import pl.wsb.exceptions.ClientNotFoundException;
 import pl.wsb.exceptions.ReservationNotFoundException;
 import pl.wsb.exceptions.RoomNotFoundException;
@@ -105,25 +103,15 @@ public class Hotel implements HotelCapability {
     }
 
     public String addClient(String firstName, String lastName, LocalDate birthDate) {
-        Client client = new Client(
-            UUID.randomUUID().toString(),
-            firstName,
-            lastName,
-            birthDate,
-            "",
-            "",
-            "",
-            "",
-            null
-        );
+        Client client = new Client(UUID.randomUUID().toString(), firstName, lastName, birthDate, "", "", "", "", null);
         this.clients.add(client);
 
         return client.getId();
     }
 
     public String getClientFullName(String clientId) {
-        for(Client client : clients) {
-            if(client.getId().equals(clientId)) {
+        for (Client client : clients) {
+            if (client.getId().equals(clientId)) {
                 return client.getFullName();
             }
         }
@@ -134,13 +122,13 @@ public class Hotel implements HotelCapability {
     public int getNumberOfUnderageClients() {
         int count = 0;
         LocalDate currentDate = LocalDate.now();
-        
-        for(Client client: clients) {
-            if(client.getBirthDate() != null) {
+
+        for (Client client : clients) {
+            if (client.getBirthDate() != null) {
                 int age = Period.between(client.getBirthDate(), currentDate).getYears();
-                if(age < 18) {
+                if (age < 18) {
                     count++;
-                } 
+                }
             }
         }
 
@@ -148,18 +136,8 @@ public class Hotel implements HotelCapability {
     }
 
     public String addRoom(double area, int floor, boolean hasKingSizeBed, String description) {
-        Room room = new Room(
-            UUID.randomUUID().toString(),
-            area,
-            floor,
-            hasKingSizeBed,
-            1,
-            true,
-            true,
-            true,
-            true,
-            description
-        );
+        Room room = new Room(UUID.randomUUID().toString(), area, floor, hasKingSizeBed, 1, true, true, true, true,
+                description);
 
         this.rooms.add(room);
 
@@ -167,55 +145,54 @@ public class Hotel implements HotelCapability {
     }
 
     public double getRoomArea(String roomId) {
-        for(Room room: rooms) {
-            if(room.getId().equals(roomId)) {
+        for (Room room : rooms) {
+            if (room.getId().equals(roomId)) {
                 room.getArea();
             }
         }
 
-        return -1;
+        return Float.NaN;
     }
-    
+
     public int getNumberOfRoomsWithKingSizeBed(int floor) {
         int count = 0;
-
-        for(Room room: rooms) {
-            if(room.getHasKingSizeBed()) {
+        for (Room room : rooms) {
+            if (room.getHasKingSizeBed() && room.getFloor() == floor) {
                 count++;
             }
         }
-
         return count;
     }
 
-    public String addNewReservation(String clientId, String roomId, LocalDate date) throws RoomNotFoundException, ClientNotFoundException {
+    public String addNewReservation(String clientId, String roomId, LocalDate date)
+            throws RoomNotFoundException, ClientNotFoundException {
         Client searchClient = null;
-        for(Client client: clients) {
-            if(client.getId().equals(clientId)) {
+        for (Client client : clients) {
+            if (client.getId().equals(clientId)) {
                 searchClient = client;
             }
         }
 
-        if(searchClient == null) {
+        if (searchClient == null) {
             throw new ClientNotFoundException("Client not found: " + clientId);
         }
 
         Room searchRoom = null;
-        for(Room room: rooms) {
-            if(room.getId().equals(roomId)) {
+        for (Room room : rooms) {
+            if (room.getId().equals(roomId)) {
                 searchRoom = room;
             }
         }
 
-        if(searchRoom == null) {
+        if (searchRoom == null) {
             throw new RoomNotFoundException("Room not found: " + roomId);
         }
 
-        for(RoomReservation reservation: reservations) {
-            if(reservation.getDate().equals(date)) {
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getDate().equals(date)) {
                 throw new RoomReservedException("This date is reserved", date);
             }
-        }        
+        }
 
         RoomReservation reservation = new RoomReservation(date, false, searchClient, searchRoom);
         this.reservations.add(reservation);
@@ -225,13 +202,13 @@ public class Hotel implements HotelCapability {
 
     public String confirmReservation(String reservationId) {
         RoomReservation searchReservation = null;
-        for(RoomReservation reservation: reservations) {
-            if(reservation.getId().equals(reservationId)) {
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getId().equals(reservationId)) {
                 searchReservation = reservation;
             }
         }
 
-        if(searchReservation == null) {
+        if (searchReservation == null) {
             throw new ReservationNotFoundException("Reservation do not exists");
         }
 
@@ -241,15 +218,15 @@ public class Hotel implements HotelCapability {
     public boolean isRoomReserved(String roomId, LocalDate date) throws RoomNotFoundException {
         Room room = null;
 
-        for(RoomReservation reservation: reservations) {
+        for (RoomReservation reservation : reservations) {
             room = reservation.getRoom();
 
-            if(room.getId().equals(roomId) && reservation.getDate().equals(date)) {
+            if (room.getId().equals(roomId) && reservation.getDate().equals(date)) {
                 return true;
             }
         }
 
-        if(room == null) {
+        if (room == null) {
             throw new RoomNotFoundException("Room not found: " + room);
         }
 
@@ -257,11 +234,23 @@ public class Hotel implements HotelCapability {
     }
 
     public int getNumberOfUnconfirmedReservation(LocalDate date) {
-        // @TODO
+        int count = 0;
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getDate().equals(date) && !reservation.isConfirmed()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public Collection<String> getRoomIdsReservedByClient(String clientId) {
-        // @TODO
+        Collection<String> reservedRoomIds = new ArrayList<>();
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getClient().getId().equals(clientId)) {
+                reservedRoomIds.add(reservation.getRoom().getId());
+            }
+        }
+        return reservedRoomIds;
     }
 
 }
