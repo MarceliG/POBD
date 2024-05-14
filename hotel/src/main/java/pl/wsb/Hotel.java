@@ -147,12 +147,13 @@ public class Hotel implements HotelCapability {
     public double getRoomArea(String roomId) {
         for (Room room : rooms) {
             if (room.getId().equals(roomId)) {
-                room.getArea();
+                return room.getArea();
             }
         }
 
         return Double.NaN;
     }
+    
 
     public int getNumberOfRoomsWithKingSizeBed(int floor) {
         int count = 0;
