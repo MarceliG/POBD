@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+hotel,pl.wsb.exceptions,ReservationNotFoundException,4,0,0,0,2,0,1,0,1,0
+hotel,pl.wsb.exceptions,ClientNotFoundException,0,4,0,0,0,2,0,1,0,1
+hotel,pl.wsb.exceptions,RoomNotFoundException,0,4,0,0,0,2,0,1,0,1
+hotel,pl.wsb.exceptions,RoomReservedException,0,15,0,0,0,2,0,1,0,1
+hotel,pl.wsb,Main,210,0,0,0,48,0,2,0,2,0
+hotel,pl.wsb,Hotel,167,351,27,35,39,73,27,28,7,17
+hotel,pl.wsb.client,PremiumAccountType,24,0,0,0,3,0,1,0,1,0
+hotel,pl.wsb.client,Preference,24,0,0,0,3,0,1,0,1,0
+hotel,pl.wsb.client,PremiumClient,28,0,0,0,7,0,4,0,4,0
+hotel,pl.wsb.client,Client,161,36,6,0,45,13,23,3,20,3
+hotel,pl.wsb.room,RoomReservation,100,31,4,0,29,11,11,5,9,5
+hotel,pl.wsb.room,Room,110,45,2,0,36,16,19,5,18,5
+hotel,pl.wsb.service,LuggageService,27,7,4,0,8,3,6,1,4,1
+hotel,pl.wsb.service,SpecialService,0,6,0,0,0,3,0,1,0,1
+hotel,pl.wsb.service,TimeService,91,7,6,0,21,3,10,1,7,1

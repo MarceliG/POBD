@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Hotel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel</a> &gt; <a href="index.source.html" class="el_package">pl.wsb</a> &gt; <span class="el_source">Hotel.java</span></div><h1>Hotel.java</h1><pre class="source lang-java linenums">package pl.wsb;
+
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
+import pl.wsb.client.Client;
+import pl.wsb.exceptions.ClientNotFoundException;
+import pl.wsb.exceptions.ReservationNotFoundException;
+import pl.wsb.exceptions.RoomNotFoundException;
+import pl.wsb.exceptions.RoomReservedException;
+import pl.wsb.interfaces.HotelCapability;
+import pl.wsb.room.Room;
+import pl.wsb.room.RoomReservation;
+import pl.wsb.service.SpecialService;
+
+
+public class Hotel implements HotelCapability {
+    private String name;
+    private List&lt;SpecialService&gt; specialServices;
+    private List&lt;Client&gt; clients;
+    private List&lt;RoomReservation&gt; reservations;
+    private List&lt;Room&gt; rooms;
+
+<span class="nc" id="L28">    public Hotel(String name, List&lt;SpecialService&gt; specialServices, Client client, RoomReservation reservation,</span>
+            Room room) {
+<span class="nc" id="L30">        this.name = name;</span>
+<span class="nc" id="L31">        this.specialServices = new ArrayList&lt;&gt;(specialServices);</span>
+<span class="nc" id="L32">        this.clients = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">        this.reservations = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L34">        this.rooms = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L35">        this.clients.add(client);</span>
+<span class="nc" id="L36">        this.reservations.add(reservation);</span>
+<span class="nc" id="L37">        this.rooms.add(room);</span>
+<span class="nc" id="L38">    }</span>
+
+<span class="fc" id="L40">    public Hotel(String name) {</span>
+<span class="fc" id="L41">        this.name = name;</span>
+<span class="fc" id="L42">        this.specialServices = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L43">        this.clients = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L44">        this.reservations = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L45">        this.rooms = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L46">    }</span>
+
+    public String getName() {
+<span class="fc" id="L49">        return this.name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L53">        this.name = name;</span>
+<span class="fc" id="L54">    }</span>
+
+    public List&lt;SpecialService&gt; getSpecialServices() {
+<span class="fc" id="L57">        return this.specialServices;</span>
+    }
+
+    public void setSpecialServices(List&lt;SpecialService&gt; specialServices) {
+<span class="fc" id="L61">        this.specialServices = specialServices;</span>
+<span class="fc" id="L62">    }</span>
+
+    public List&lt;Client&gt; getClients() {
+<span class="fc" id="L65">        return this.clients;</span>
+    }
+
+    public void setClients(List&lt;Client&gt; clients) {
+<span class="nc" id="L69">        this.clients = clients;</span>
+<span class="nc" id="L70">    }</span>
+
+    public List&lt;RoomReservation&gt; getReservations() {
+<span class="fc" id="L73">        return this.reservations;</span>
+    }
+
+    public void setReservations(List&lt;RoomReservation&gt; reservations) {
+<span class="nc" id="L77">        this.reservations = reservations;</span>
+<span class="nc" id="L78">    }</span>
+
+    public void setRooms(List&lt;Room&gt; rooms) {
+<span class="nc" id="L81">        this.rooms = rooms;</span>
+<span class="nc" id="L82">    }</span>
+
+    public List&lt;Room&gt; getRooms() {
+<span class="fc" id="L85">        return this.rooms;</span>
+    }
+
+    // Display all arguments for testing
+    public String getAllInformation() {
+<span class="nc" id="L90">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L91">        Class&lt;?&gt; thisClass = this.getClass();</span>
+<span class="nc" id="L92">        Field[] fields = thisClass.getDeclaredFields();</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        for (Field field : fields) {</span>
+            try {
+<span class="nc" id="L96">                Object value = field.get(this);</span>
+<span class="nc" id="L97">                sb.append(field.getName()).append(&quot;: &quot;).append(value).append(&quot;\n&quot;);</span>
+<span class="nc" id="L98">            } catch (IllegalAccessException e) {</span>
+<span class="nc" id="L99">                e.printStackTrace();</span>
+            }
+        }
+<span class="nc" id="L102">        return sb.toString();</span>
+    }
+
+    public String addClient(String firstName, String lastName, LocalDate birthDate) {
+<span class="fc" id="L106">        Client client = new Client(UUID.randomUUID().toString(), firstName, lastName, birthDate, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, null);</span>
+<span class="fc" id="L107">        this.clients.add(client);</span>
+
+<span class="fc" id="L109">        return client.getId();</span>
+    }
+
+    public String getClientFullName(String clientId) {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        for (Client client : clients) {</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (client.getId().equals(clientId)) {</span>
+<span class="nc" id="L115">                return client.getFullName();</span>
+            }
+        }
+
+<span class="nc" id="L119">        return null;</span>
+    }
+
+    public int getNumberOfUnderageClients() {
+<span class="fc" id="L123">        int count = 0;</span>
+<span class="fc" id="L124">        LocalDate currentDate = LocalDate.now();</span>
+
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        for (Client client : clients) {</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">            if (client.getBirthDate() != null) {</span>
+<span class="fc" id="L128">                int age = Period.between(client.getBirthDate(), currentDate).getYears();</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">                if (age &lt; 18) {</span>
+<span class="fc" id="L130">                    count++;</span>
+                }
+            }
+        }
+
+<span class="fc" id="L135">        return count;</span>
+    }
+
+    public String addRoom(double area, int floor, boolean hasKingSizeBed, String description) {
+<span class="fc" id="L139">        Room room = new Room(UUID.randomUUID().toString(), area, floor, hasKingSizeBed, 1, true, true, true, true,</span>
+<span class="fc" id="L140">                description);</span>
+
+<span class="fc" id="L142">        this.rooms.add(room);</span>
+
+<span class="fc" id="L144">        return room.getId();</span>
+    }
+
+    public double getRoomArea(String roomId) {
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">        for (Room room : rooms) {</span>
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">            if (room.getId().equals(roomId)) {</span>
+<span class="fc" id="L150">                return room.getArea();</span>
+            }
+        }
+
+<span class="nc" id="L154">        return Double.NaN;</span>
+    }
+    
+
+    public int getNumberOfRoomsWithKingSizeBed(int floor) {
+<span class="fc" id="L159">        int count = 0;</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        for (Room room : rooms) {</span>
+<span class="pc bpc" id="L161" title="1 of 4 branches missed.">            if (room.getHasKingSizeBed() &amp;&amp; room.getFloor() == floor) {</span>
+<span class="fc" id="L162">                count++;</span>
+            }
+        }
+<span class="fc" id="L165">        return count;</span>
+    }
+
+    public String addNewReservation(String clientId, String roomId, LocalDate date)
+            throws RoomNotFoundException, ClientNotFoundException {
+<span class="fc" id="L170">        Client searchClient = null;</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">        for (Client client : clients) {</span>
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">            if (client.getId().equals(clientId)) {</span>
+<span class="fc" id="L173">                searchClient = client;</span>
+            }
+        }
+
+<span class="fc bfc" id="L177" title="All 2 branches covered.">        if (searchClient == null) {</span>
+<span class="fc" id="L178">            throw new ClientNotFoundException(&quot;Client not found: &quot; + clientId);</span>
+        }
+
+<span class="fc" id="L181">        Room searchRoom = null;</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        for (Room room : rooms) {</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            if (room.getId().equals(roomId)) {</span>
+<span class="fc" id="L184">                searchRoom = room;</span>
+            }
+        }
+
+<span class="fc bfc" id="L188" title="All 2 branches covered.">        if (searchRoom == null) {</span>
+<span class="fc" id="L189">            throw new RoomNotFoundException(&quot;Room not found: &quot; + roomId);</span>
+        }
+
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        for (RoomReservation reservation : reservations) {</span>
+<span class="pc bpc" id="L193" title="1 of 2 branches missed.">            if (reservation.getDate().equals(date)) {</span>
+<span class="fc" id="L194">                throw new RoomReservedException(&quot;This date is reserved&quot;, date);</span>
+            }
+        }
+
+<span class="fc" id="L198">        RoomReservation reservation = new RoomReservation(date, false, searchClient, searchRoom);</span>
+<span class="fc" id="L199">        this.reservations.add(reservation);</span>
+
+<span class="fc" id="L201">        return reservation.getId();</span>
+    }
+
+    public String confirmReservation(String reservationId) {
+<span class="fc" id="L205">        RoomReservation searchReservation = null;</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        for (RoomReservation reservation : reservations) {</span>
+<span class="pc bpc" id="L207" title="1 of 2 branches missed.">            if (reservation.getId().equals(reservationId)) {</span>
+<span class="fc" id="L208">                searchReservation = reservation;</span>
+            }
+        }
+
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">        if (searchReservation == null) {</span>
+<span class="nc" id="L213">            throw new ReservationNotFoundException(&quot;Reservation do not exists&quot;);</span>
+        }
+
+<span class="fc" id="L216">        return searchReservation.getId();</span>
+    }
+
+    public boolean isRoomReserved(String roomId, LocalDate date) throws RoomNotFoundException {
+<span class="fc" id="L220">        Room room = null;</span>
+
+<span class="pc bpc" id="L222" title="1 of 2 branches missed.">        for (RoomReservation reservation : reservations) {</span>
+<span class="fc" id="L223">            room = reservation.getRoom();</span>
+
+<span class="pc bpc" id="L225" title="2 of 4 branches missed.">            if (room.getId().equals(roomId) &amp;&amp; reservation.getDate().equals(date)) {</span>
+<span class="fc" id="L226">                return true;</span>
+            }
+        }
+
+<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (room == null) {</span>
+<span class="nc" id="L231">            throw new RoomNotFoundException(&quot;Room not found: &quot; + room);</span>
+        }
+
+<span class="nc" id="L234">        return false;</span>
+    }
+
+    public int getNumberOfUnconfirmedReservation(LocalDate date) {
+<span class="nc" id="L238">        int count = 0;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        for (RoomReservation reservation : reservations) {</span>
+<span class="nc bnc" id="L240" title="All 4 branches missed.">            if (reservation.getDate().equals(date) &amp;&amp; !reservation.isConfirmed()) {</span>
+<span class="nc" id="L241">                count++;</span>
+            }
+        }
+<span class="nc" id="L244">        return count;</span>
+    }
+
+    public Collection&lt;String&gt; getRoomIdsReservedByClient(String clientId) {
+<span class="fc" id="L248">        Collection&lt;String&gt; reservedRoomIds = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L249" title="All 2 branches covered.">        for (RoomReservation reservation : reservations) {</span>
+<span class="pc bpc" id="L250" title="1 of 2 branches missed.">            if (reservation.getClient().getId().equals(clientId)) {</span>
+<span class="fc" id="L251">                reservedRoomIds.add(reservation.getRoom().getId());</span>
+            }
+        }
+<span class="fc" id="L254">        return reservedRoomIds;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

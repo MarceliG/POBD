@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel</a> &gt; <a href="index.source.html" class="el_package">pl.wsb.client</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package pl.wsb.client;
+
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Client {
+    private String id;
+    protected String firstName;
+    protected String lastName;
+    private LocalDate birthDate;
+    private int age;
+    private String address;
+    private String phoneNumber;
+    private String email;
+    private String idCardNumber;
+    private Preference roomPreference;
+
+<span class="fc" id="L22">    public Client(String id, String firstName, String lastName, LocalDate birthDate, String address, String phoneNumber,</span>
+            String email, String idCardNumber, Preference roomPreference) {
+<span class="fc" id="L24">        this.id = id;</span>
+<span class="fc" id="L25">        this.firstName = firstName;</span>
+<span class="fc" id="L26">        this.lastName = lastName;</span>
+<span class="fc" id="L27">        this.birthDate = birthDate;</span>
+<span class="fc" id="L28">        this.address = address;</span>
+<span class="fc" id="L29">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L30">        this.email = email;</span>
+<span class="fc" id="L31">        this.idCardNumber = idCardNumber;</span>
+<span class="fc" id="L32">        this.roomPreference = roomPreference;</span>
+<span class="fc" id="L33">    }</span>
+
+    public String getId() {
+<span class="fc" id="L36">        return id;</span>
+    }
+
+    public void setId(String id) {
+<span class="nc" id="L40">        this.id = id;</span>
+<span class="nc" id="L41">    }</span>
+
+    public String getFirstName() {
+<span class="nc" id="L44">        return firstName;</span>
+    }
+
+    public void setFirstName(String firstName) {
+<span class="nc" id="L48">        this.firstName = firstName;</span>
+<span class="nc" id="L49">    }</span>
+
+    public String getLastName() {
+<span class="nc" id="L52">        return lastName;</span>
+    }
+
+    public void setLastName(String lastName) {
+<span class="nc" id="L56">        this.lastName = lastName;</span>
+<span class="nc" id="L57">    }</span>
+
+    public LocalDate getBirthDate() {
+<span class="fc" id="L60">        return birthDate;</span>
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+<span class="nc" id="L64">        this.birthDate = birthDate;</span>
+<span class="nc" id="L65">    }</span>
+
+    public String getAddress() {
+<span class="nc" id="L68">        return address;</span>
+    }
+
+    public void setAddress(String address) {
+<span class="nc" id="L72">        this.address = address;</span>
+<span class="nc" id="L73">    }</span>
+
+    public String getPhoneNumber() {
+<span class="nc" id="L76">        return phoneNumber;</span>
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+<span class="nc" id="L80">        this.phoneNumber = phoneNumber;</span>
+<span class="nc" id="L81">    }</span>
+
+    public String getEmail() {
+<span class="nc" id="L84">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="nc" id="L88">        this.email = email;</span>
+<span class="nc" id="L89">    }</span>
+
+    public String getIdCardNumber() {
+<span class="nc" id="L92">        return idCardNumber;</span>
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+<span class="nc" id="L96">        this.idCardNumber = idCardNumber;</span>
+<span class="nc" id="L97">    }</span>
+
+    public Preference getRoomPreference() {
+<span class="nc" id="L100">        return roomPreference;</span>
+    }
+
+    public void setRoomPreference(Preference roomPreference) {
+<span class="nc" id="L104">        this.roomPreference = roomPreference;</span>
+<span class="nc" id="L105">    }</span>
+
+
+    public int getAge() {
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (this.birthDate == null) {</span>
+<span class="nc" id="L110">            return 0;</span>
+        }
+<span class="nc" id="L112">        LocalDate currentDate = LocalDate.now();</span>
+<span class="nc" id="L113">        this.age = Period.between(this.birthDate, currentDate).getYears();</span>
+<span class="nc" id="L114">        return this.age;</span>
+    }
+
+    public String getFullName() {
+<span class="nc" id="L118">        return String.format(&quot;%s %s&quot;, this.firstName, this.lastName);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L123">        return &quot;Client: &quot; + id;</span>
+    }
+
+    // Display all arguments for child and parent for testing
+    public String getAllInformation() {
+<span class="nc" id="L128">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L129">        List&lt;Field&gt; fields = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L131">        Class&lt;?&gt; classItem = this.getClass();</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        while (classItem != null) {</span>
+<span class="nc" id="L133">            fields.addAll(Arrays.asList(classItem.getDeclaredFields()));</span>
+<span class="nc" id="L134">            classItem = classItem.getSuperclass();</span>
+        }
+
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        for (Field field : fields.toArray(new Field[0])) {</span>
+<span class="nc" id="L138">            field.setAccessible(true);</span>
+            try {
+<span class="nc" id="L140">                Object value = field.get(this);</span>
+<span class="nc" id="L141">                sb.append(field.getName()).append(&quot;: &quot;).append(value).append(&quot;\n&quot;);</span>
+<span class="nc" id="L142">            } catch (IllegalArgumentException | IllegalAccessException e) {</span>
+<span class="nc" id="L143">                e.printStackTrace();</span>
+            }
+        }
+
+<span class="nc" id="L147">        return sb.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
