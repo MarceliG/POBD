@@ -1,6 +1,5 @@
 package pl.wsb.service;
 
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -40,29 +39,12 @@ public class TimeService extends SpecialService {
     public String toString() {
         return "" + name;
     }
-    
+
     public void setCost(double cost) {
         this.cost = cost;
     }
 
     public double getCost() {
         return this.cost;
-    }
-
-    // Display all arguments for testing
-    public String getAllInformation() {
-        StringBuilder sb = new StringBuilder();
-        Class<?> thisClass = this.getClass();
-        Field[] fields = thisClass.getDeclaredFields();
-
-        for (Field field : fields) {
-            try {
-                Object value = field.get(this);
-                sb.append(field.getName()).append(": ").append(value).append("\n");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
     }
 }

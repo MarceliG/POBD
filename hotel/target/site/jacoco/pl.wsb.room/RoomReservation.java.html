@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoomReservation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel</a> &gt; <a href="index.source.html" class="el_package">pl.wsb.room</a> &gt; <span class="el_source">RoomReservation.java</span></div><h1>RoomReservation.java</h1><pre class="source lang-java linenums">package pl.wsb.room;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.UUID;
 import pl.wsb.client.Client;
@@ -12,83 +11,67 @@ public class RoomReservation {
     private Client client;
     private Room room;
 
-<span class="nc" id="L15">    public RoomReservation(String id, LocalDate date, boolean isConfirmed, Client client, Room room) {</span>
-<span class="nc" id="L16">        this.id = id;</span>
-<span class="nc" id="L17">        this.date = date;</span>
-<span class="nc" id="L18">        this.isConfirmed = false;</span>
-<span class="nc" id="L19">        this.client = client;</span>
-<span class="nc" id="L20">        this.room = room;</span>
-<span class="nc" id="L21">    }</span>
+<span class="nc" id="L14">    public RoomReservation(String id, LocalDate date, boolean isConfirmed, Client client, Room room) {</span>
+<span class="nc" id="L15">        this.id = id;</span>
+<span class="nc" id="L16">        this.date = date;</span>
+<span class="nc" id="L17">        this.isConfirmed = false;</span>
+<span class="nc" id="L18">        this.client = client;</span>
+<span class="nc" id="L19">        this.room = room;</span>
+<span class="nc" id="L20">    }</span>
 
-<span class="fc" id="L23">    public RoomReservation(LocalDate date, boolean isConfirmed, Client client, Room room) {</span>
-<span class="fc" id="L24">        this.id = UUID.randomUUID().toString();</span>
-<span class="fc" id="L25">        this.date = date;</span>
-<span class="fc" id="L26">        this.isConfirmed = false;</span>
-<span class="fc" id="L27">        this.client = client;</span>
-<span class="fc" id="L28">        this.room = room;</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L22">    public RoomReservation(LocalDate date, boolean isConfirmed, Client client, Room room) {</span>
+<span class="fc" id="L23">        this.id = UUID.randomUUID().toString();</span>
+<span class="fc" id="L24">        this.date = date;</span>
+<span class="fc" id="L25">        this.isConfirmed = false;</span>
+<span class="fc" id="L26">        this.client = client;</span>
+<span class="fc" id="L27">        this.room = room;</span>
+<span class="fc" id="L28">    }</span>
 
     public void confirmReservation() {
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (!this.isConfirmed) {</span>
-<span class="nc" id="L33">            this.isConfirmed = true;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (!this.isConfirmed) {</span>
+<span class="nc" id="L32">            this.isConfirmed = true;</span>
         }
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L34">    }</span>
 
     public boolean isConfirmed() {
-<span class="nc" id="L38">        return this.isConfirmed;</span>
+<span class="nc" id="L37">        return this.isConfirmed;</span>
     }
 
     public void setDate(LocalDate date) {
-<span class="nc" id="L42">        this.date = date;</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L41">        this.date = date;</span>
+<span class="nc" id="L42">    }</span>
 
     public LocalDate getDate() {
-<span class="fc" id="L46">        return this.date;</span>
+<span class="fc" id="L45">        return this.date;</span>
     }
 
     public void setId(String id) {
-<span class="nc" id="L50">        this.id = id;</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L49">        this.id = id;</span>
+<span class="nc" id="L50">    }</span>
 
     public String getId() {
-<span class="fc" id="L54">        return this.id;</span>
+<span class="fc" id="L53">        return this.id;</span>
     }
 
     public void setClient(Client client) {
-<span class="nc" id="L58">        this.client = client;</span>
-<span class="nc" id="L59">    }</span>
+<span class="nc" id="L57">        this.client = client;</span>
+<span class="nc" id="L58">    }</span>
 
     public Client getClient() {
-<span class="fc" id="L62">        return this.client;</span>
+<span class="fc" id="L61">        return this.client;</span>
     }
 
     public void setRoom(Room room) {
-<span class="nc" id="L66">        this.room = room;</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L65">        this.room = room;</span>
+<span class="nc" id="L66">    }</span>
 
     public Room getRoom() {
-<span class="fc" id="L70">        return this.room;</span>
+<span class="fc" id="L69">        return this.room;</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L75">        return &quot;Date: &quot; + date + &quot;, &quot; + room;</span>
-    }
-
-    public String getAllInformation() {
-<span class="nc" id="L79">        StringBuilder sb = new StringBuilder();</span>
-<span class="nc" id="L80">        Class&lt;?&gt; thisClass = this.getClass();</span>
-<span class="nc" id="L81">        Field[] fields = thisClass.getDeclaredFields();</span>
-
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        for (Field field : fields) {</span>
-            try {
-<span class="nc" id="L85">                Object value = field.get(this);</span>
-<span class="nc" id="L86">                sb.append(field.getName()).append(&quot;: &quot;).append(value).append(&quot;\n&quot;);</span>
-<span class="nc" id="L87">            } catch (IllegalAccessException e) {</span>
-<span class="nc" id="L88">                e.printStackTrace();</span>
-            }
-        }
-<span class="nc" id="L91">        return sb.toString();</span>
+<span class="nc" id="L74">        return &quot;Date: &quot; + date + &quot;, &quot; + room;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

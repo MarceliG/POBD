@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="HotelTest" time="0.294" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="HotelTest" time="0.455" tests="18" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/marceli/wsb/POBD/hotel/target/surefire/surefirebooter-20240515181740261_3.jar /home/marceli/wsb/POBD/hotel/target/surefire 2024-05-15T18-17-39_810-jvmRun1 surefire-20240515181740261_1tmp surefire_0-20240515181740261_2tmp"/>
+    <property name="sun.java.command" value="/home/marceli/wsb/POBD/hotel/target/surefire/surefirebooter-20240515203242139_3.jar /home/marceli/wsb/POBD/hotel/target/surefire 2024-05-15T20-32-41_312-jvmRun1 surefire-20240515203242139_1tmp surefire_0-20240515203242139_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/marceli/wsb/POBD/hotel/target/test-classes:/home/marceli/wsb/POBD/hotel/target/classes:/home/marceli/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar:/home/marceli/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:/home/marceli/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/marceli/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/marceli/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/marceli/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/marceli/wsb/POBD/hotel/target/surefire/surefirebooter-20240515181740261_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/marceli/wsb/POBD/hotel/target/surefire/surefirebooter-20240515203242139_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.2+13-Ubuntu-120.04.1"/>
     <property name="user.name" value="marceli"/>
@@ -53,17 +53,22 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testIsRoomReserved" classname="HotelTest" time="0.13"/>
-  <testcase name="testGetNumberOfRoomsWithKingSizeBed" classname="HotelTest" time="0.004"/>
-  <testcase name="testAddRoom" classname="HotelTest" time="0.005"/>
-  <testcase name="testAddNewReservationClientNotFound" classname="HotelTest" time="0.005"/>
-  <testcase name="testAddNewReservation" classname="HotelTest" time="0.004"/>
-  <testcase name="testAddNewReservationRoomNotFound" classname="HotelTest" time="0.004"/>
-  <testcase name="testGetRoomsIsEmpty" classname="HotelTest" time="0.005"/>
-  <testcase name="testAddClient" classname="HotelTest" time="0.006"/>
-  <testcase name="testGetRoomArea" classname="HotelTest" time="0.005"/>
-  <testcase name="testGetRoomIdsReservedByClient" classname="HotelTest" time="0.003"/>
-  <testcase name="testGetNumberOfUnderageClients" classname="HotelTest" time="0.006"/>
-  <testcase name="testAddNewReservationRoomReserved" classname="HotelTest" time="0.005"/>
-  <testcase name="testConfirmReservation" classname="HotelTest" time="0.006"/>
+  <testcase name="testGetNumberOfRoomsWithKingSizeBed" classname="HotelTest" time="0.159"/>
+  <testcase name="testAddRoom" classname="HotelTest" time="0.01"/>
+  <testcase name="testAddNewReservationClientNotFound" classname="HotelTest" time="0.08"/>
+  <testcase name="testAddNewReservation" classname="HotelTest" time="0.005"/>
+  <testcase name="testIsRoomReservedNotFound" classname="HotelTest" time="0.006"/>
+  <testcase name="testConfirmReservationReservationNotFound" classname="HotelTest" time="0.002"/>
+  <testcase name="testAddNewReservationRoomNotFound" classname="HotelTest" time="0.008"/>
+  <testcase name="testGetRoomsIsEmpty" classname="HotelTest" time="0.004"/>
+  <testcase name="testIsRoomReservedTrue" classname="HotelTest" time="0.006"/>
+  <testcase name="testAddClient" classname="HotelTest" time="0.002"/>
+  <testcase name="testHotelConstructor" classname="HotelTest" time="0.005"/>
+  <testcase name="testGetRoomAreaForNonExistentRoom" classname="HotelTest" time="0.004"/>
+  <testcase name="testIsRoomReservedFalse" classname="HotelTest" time="0.002"/>
+  <testcase name="testGetRoomArea" classname="HotelTest" time="0.003"/>
+  <testcase name="testGetRoomIdsReservedByClient" classname="HotelTest" time="0.004"/>
+  <testcase name="testGetNumberOfUnderageClients" classname="HotelTest" time="0.005"/>
+  <testcase name="testAddNewReservationRoomReserved" classname="HotelTest" time="0.003"/>
+  <testcase name="testConfirmReservation" classname="HotelTest" time="0.004"/>
 </testsuite>

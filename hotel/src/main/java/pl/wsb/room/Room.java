@@ -1,7 +1,5 @@
 package pl.wsb.room;
 
-import java.lang.reflect.Field;
-
 public class Room {
     private String id;
     private double area;
@@ -81,7 +79,7 @@ public class Room {
         this.hasBalcony = hasBalcony;
     }
 
-    public boolean hasBalcony() {
+    public boolean getHasBalcony() {
         return this.hasBalcony;
     }
 
@@ -112,23 +110,5 @@ public class Room {
     @Override
     public String toString() {
         return "Room number: " + id;
-    }
-
-
-    // Display all arguments for testing
-    public String getAllInformation() {
-        StringBuilder sb = new StringBuilder();
-        Class<?> thisClass = this.getClass();
-        Field[] fields = thisClass.getDeclaredFields();
-
-        for (Field field : fields) {
-            try {
-                Object value = field.get(this);
-                sb.append(field.getName()).append(": ").append(value).append("\n");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
     }
 }

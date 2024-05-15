@@ -1,11 +1,7 @@
 package pl.wsb.client;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Client {
     private String id;
@@ -121,29 +117,5 @@ public class Client {
     @Override
     public String toString() {
         return "Client: " + id;
-    }
-
-    // Display all arguments for child and parent for testing
-    public String getAllInformation() {
-        StringBuilder sb = new StringBuilder();
-        List<Field> fields = new ArrayList<>();
-
-        Class<?> classItem = this.getClass();
-        while (classItem != null) {
-            fields.addAll(Arrays.asList(classItem.getDeclaredFields()));
-            classItem = classItem.getSuperclass();
-        }
-
-        for (Field field : fields.toArray(new Field[0])) {
-            field.setAccessible(true);
-            try {
-                Object value = field.get(this);
-                sb.append(field.getName()).append(": ").append(value).append("\n");
-            } catch (IllegalArgumentException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return sb.toString();
     }
 }

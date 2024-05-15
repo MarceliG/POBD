@@ -1,14 +1,43 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.wsb.Hotel;
+import pl.wsb.client.Client;
 import pl.wsb.exceptions.ClientNotFoundException;
+import pl.wsb.exceptions.ReservationNotFoundException;
 import pl.wsb.exceptions.RoomNotFoundException;
 import pl.wsb.exceptions.RoomReservedException;
+import pl.wsb.room.Room;
+import pl.wsb.room.RoomReservation;
+import pl.wsb.service.SpecialService;
 
 public class HotelTest {
     final private Hotel hotel = new Hotel("Test hotel");
+
+    @Test
+    void testHotelConstructor() {
+        String hotelName = "Test Hotel";
+        List<SpecialService> specialServices = new ArrayList<>();
+        Client client = new Client("1", "John", "Doe", LocalDate.of(1990, 5, 15), "", "", "", "", null);
+        Room room = new Room("1", 20.0, 2, true, 1, true, true, true, true, "Description");
+        RoomReservation reservation = new RoomReservation(LocalDate.of(2024, 5, 15), false, client, room);
+
+        Hotel hotel = new Hotel(hotelName, specialServices, client, reservation, room);
+
+        // Sprawdzamy, czy pola hotelu zostały poprawnie zainicjalizowane
+        Assertions.assertEquals(hotelName, hotel.getName());
+        Assertions.assertEquals(specialServices, hotel.getSpecialServices());
+        Assertions.assertEquals(1, hotel.getClients().size());
+        Assertions.assertEquals(client, hotel.getClients().get(0));
+        Assertions.assertEquals(1, hotel.getReservations().size());
+        Assertions.assertEquals(reservation, hotel.getReservations().get(0));
+        Assertions.assertEquals(1, hotel.getRooms().size());
+        Assertions.assertEquals(room, hotel.getRooms().get(0));
+    }
 
     @Test
     void testGetRoomsIsEmpty() {
@@ -32,6 +61,14 @@ public class HotelTest {
     }
 
     @Test
+    void testGetRoomAreaForNonExistentRoom() {
+        String nonExistentRoomId = UUID.randomUUID().toString();
+        double area = hotel.getRoomArea(nonExistentRoomId);
+        
+        Assertions.assertTrue(Double.isNaN(area));
+    }
+
+    @Test
     void testAddNewReservation() throws RoomNotFoundException, ClientNotFoundException, RoomReservedException {
         String clientId = hotel.addClient("Firstname", "Lastname", LocalDate.now());
         String roomId = hotel.addRoom(1, 2, false, "Description");
@@ -46,7 +83,6 @@ public class HotelTest {
     @Test
     void testAddNewReservationRoomNotFound() throws ClientNotFoundException, RoomReservedException {
         String clientId = hotel.addClient("Firstname", "Lastname", LocalDate.now());
-        // Room ID intentionally not added
 
         Assertions.assertThrows(RoomNotFoundException.class, () -> {
             hotel.addNewReservation(clientId, "nonExistingRoomId", LocalDate.now());
@@ -56,7 +92,6 @@ public class HotelTest {
     @Test
     void testAddNewReservationClientNotFound() throws RoomNotFoundException, RoomReservedException {
         String roomId = hotel.addRoom(1, 2, false, "Description");
-        // Client ID intentionally not added
 
         Assertions.assertThrows(ClientNotFoundException.class, () -> {
             hotel.addNewReservation("nonExistingClientId", roomId, LocalDate.now());
@@ -68,7 +103,6 @@ public class HotelTest {
         String clientId = hotel.addClient("Firstname", "Lastname", LocalDate.now());
         String roomId = hotel.addRoom(1, 2, false, "Description");
 
-        // Adding a reservation for the same room and date
         hotel.addNewReservation(clientId, roomId, LocalDate.now());
 
         Assertions.assertThrows(RoomReservedException.class, () -> {
@@ -89,7 +123,19 @@ public class HotelTest {
     }
 
     @Test
-    void testIsRoomReserved() throws RoomNotFoundException, ClientNotFoundException, RoomReservedException {
+    void testConfirmReservationReservationNotFound() {
+        Exception exception = Assertions.assertThrows(ReservationNotFoundException.class, () -> {
+            hotel.confirmReservation("nonExistentReservationId");
+        });
+
+        String expectedMessage = "Reservation do not exists";
+        String actualMessage = exception.getMessage();
+
+        Assertions.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void testIsRoomReservedTrue() throws RoomNotFoundException, ClientNotFoundException, RoomReservedException {
         String clientId = hotel.addClient("Firstname", "Lastname", LocalDate.now());
         String roomId = hotel.addRoom(1, 2, false, "Description");
         LocalDate date = LocalDate.now();
@@ -98,6 +144,32 @@ public class HotelTest {
         boolean isReserved = hotel.isRoomReserved(roomId, date);
 
         Assertions.assertTrue(isReserved);
+    }
+
+    
+    @Test
+    void testIsRoomReservedFalse() throws RoomNotFoundException, ClientNotFoundException, RoomReservedException {
+        String roomId = hotel.addRoom(1, 2, true, "Description");
+        LocalDate date = LocalDate.now();
+
+        boolean isReserved = hotel.isRoomReserved(roomId, date);
+
+        Assertions.assertFalse(isReserved);
+    }
+
+    @Test
+    void testIsRoomReservedNotFound() {
+        LocalDate date = LocalDate.now();
+        String nonExistentRoomId = UUID.randomUUID().toString();
+
+        Exception exception = Assertions.assertThrows(RoomNotFoundException.class, () -> {
+            hotel.isRoomReserved(nonExistentRoomId, date);
+        });
+
+        String expectedMessage = "Room not found: " + nonExistentRoomId;
+        String actualMessage = exception.getMessage();
+
+        Assertions.assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test

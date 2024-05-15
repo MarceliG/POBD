@@ -1,6 +1,5 @@
 package pl.wsb;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -85,23 +84,6 @@ public class Hotel implements HotelCapability {
         return this.rooms;
     }
 
-    // Display all arguments for testing
-    public String getAllInformation() {
-        StringBuilder sb = new StringBuilder();
-        Class<?> thisClass = this.getClass();
-        Field[] fields = thisClass.getDeclaredFields();
-
-        for (Field field : fields) {
-            try {
-                Object value = field.get(this);
-                sb.append(field.getName()).append(": ").append(value).append("\n");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
-    }
-
     public String addClient(String firstName, String lastName, LocalDate birthDate) {
         Client client = new Client(UUID.randomUUID().toString(), firstName, lastName, birthDate, "", "", "", "", null);
         this.clients.add(client);
@@ -153,7 +135,7 @@ public class Hotel implements HotelCapability {
 
         return Double.NaN;
     }
-    
+
 
     public int getNumberOfRoomsWithKingSizeBed(int floor) {
         int count = 0;
@@ -201,7 +183,7 @@ public class Hotel implements HotelCapability {
         return reservation.getId();
     }
 
-    public String confirmReservation(String reservationId) {
+    public String confirmReservation(String reservationId) throws ReservationNotFoundException {
         RoomReservation searchReservation = null;
         for (RoomReservation reservation : reservations) {
             if (reservation.getId().equals(reservationId)) {
@@ -217,18 +199,22 @@ public class Hotel implements HotelCapability {
     }
 
     public boolean isRoomReserved(String roomId, LocalDate date) throws RoomNotFoundException {
-        Room room = null;
-
-        for (RoomReservation reservation : reservations) {
-            room = reservation.getRoom();
-
-            if (room.getId().equals(roomId) && reservation.getDate().equals(date)) {
-                return true;
+        Room foundRoom = null;
+        for (Room room : rooms) {
+            if (room.getId().equals(roomId)) {
+                foundRoom = room;
+                break;
             }
         }
 
-        if (room == null) {
-            throw new RoomNotFoundException("Room not found: " + room);
+        if (foundRoom == null) {
+            throw new RoomNotFoundException("Room not found: " + roomId);
+        }
+
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getRoom().getId().equals(roomId) && reservation.getDate().equals(date)) {
+                return true;
+            }
         }
 
         return false;
