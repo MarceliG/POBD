@@ -64,7 +64,7 @@ public class HotelTest {
     void testGetRoomAreaForNonExistentRoom() {
         String nonExistentRoomId = UUID.randomUUID().toString();
         double area = hotel.getRoomArea(nonExistentRoomId);
-        
+
         Assertions.assertTrue(Double.isNaN(area));
     }
 
@@ -146,7 +146,7 @@ public class HotelTest {
         Assertions.assertTrue(isReserved);
     }
 
-    
+
     @Test
     void testIsRoomReservedFalse() throws RoomNotFoundException, ClientNotFoundException, RoomReservedException {
         String roomId = hotel.addRoom(1, 2, true, "Description");
