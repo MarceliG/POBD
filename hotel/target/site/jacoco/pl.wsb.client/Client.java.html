@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel</a> &gt; <a href="index.source.html" class="el_package">pl.wsb.client</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package pl.wsb.client;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Client {
+    private String id;
+    protected String firstName;
+    protected String lastName;
+    private LocalDate birthDate;
+    private int age;
+    private String address;
+    private String phoneNumber;
+    private String email;
+    private String idCardNumber;
+    private Preference roomPreference;
+
+<span class="fc" id="L18">    public Client(String id, String firstName, String lastName, LocalDate birthDate, String address, String phoneNumber,</span>
+            String email, String idCardNumber, Preference roomPreference) {
+<span class="fc" id="L20">        this.id = id;</span>
+<span class="fc" id="L21">        this.firstName = firstName;</span>
+<span class="fc" id="L22">        this.lastName = lastName;</span>
+<span class="fc" id="L23">        this.birthDate = birthDate;</span>
+<span class="fc" id="L24">        this.address = address;</span>
+<span class="fc" id="L25">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L26">        this.email = email;</span>
+<span class="fc" id="L27">        this.idCardNumber = idCardNumber;</span>
+<span class="fc" id="L28">        this.roomPreference = roomPreference;</span>
+<span class="fc" id="L29">    }</span>
+
+    public String getId() {
+<span class="fc" id="L32">        return id;</span>
+    }
+
+    public void setId(String id) {
+<span class="nc" id="L36">        this.id = id;</span>
+<span class="nc" id="L37">    }</span>
+
+    public String getFirstName() {
+<span class="nc" id="L40">        return firstName;</span>
+    }
+
+    public void setFirstName(String firstName) {
+<span class="nc" id="L44">        this.firstName = firstName;</span>
+<span class="nc" id="L45">    }</span>
+
+    public String getLastName() {
+<span class="nc" id="L48">        return lastName;</span>
+    }
+
+    public void setLastName(String lastName) {
+<span class="nc" id="L52">        this.lastName = lastName;</span>
+<span class="nc" id="L53">    }</span>
+
+    public LocalDate getBirthDate() {
+<span class="fc" id="L56">        return birthDate;</span>
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+<span class="nc" id="L60">        this.birthDate = birthDate;</span>
+<span class="nc" id="L61">    }</span>
+
+    public String getAddress() {
+<span class="nc" id="L64">        return address;</span>
+    }
+
+    public void setAddress(String address) {
+<span class="nc" id="L68">        this.address = address;</span>
+<span class="nc" id="L69">    }</span>
+
+    public String getPhoneNumber() {
+<span class="nc" id="L72">        return phoneNumber;</span>
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+<span class="nc" id="L76">        this.phoneNumber = phoneNumber;</span>
+<span class="nc" id="L77">    }</span>
+
+    public String getEmail() {
+<span class="nc" id="L80">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="nc" id="L84">        this.email = email;</span>
+<span class="nc" id="L85">    }</span>
+
+    public String getIdCardNumber() {
+<span class="nc" id="L88">        return idCardNumber;</span>
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+<span class="nc" id="L92">        this.idCardNumber = idCardNumber;</span>
+<span class="nc" id="L93">    }</span>
+
+    public Preference getRoomPreference() {
+<span class="nc" id="L96">        return roomPreference;</span>
+    }
+
+    public void setRoomPreference(Preference roomPreference) {
+<span class="nc" id="L100">        this.roomPreference = roomPreference;</span>
+<span class="nc" id="L101">    }</span>
+
+
+    public int getAge() {
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (this.birthDate == null) {</span>
+<span class="nc" id="L106">            return 0;</span>
+        }
+<span class="nc" id="L108">        LocalDate currentDate = LocalDate.now();</span>
+<span class="nc" id="L109">        this.age = Period.between(this.birthDate, currentDate).getYears();</span>
+<span class="nc" id="L110">        return this.age;</span>
+    }
+
+    public String getFullName() {
+<span class="nc" id="L114">        return String.format(&quot;%s %s&quot;, this.firstName, this.lastName);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L119">        return &quot;Client: &quot; + id;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

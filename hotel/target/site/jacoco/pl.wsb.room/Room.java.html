@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Room.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel</a> &gt; <a href="index.source.html" class="el_package">pl.wsb.room</a> &gt; <span class="el_source">Room.java</span></div><h1>Room.java</h1><pre class="source lang-java linenums">package pl.wsb.room;
+
+public class Room {
+    private String id;
+    private double area;
+    private int floor;
+    private boolean hasKingSizeBed;
+    private int countBed;
+    private boolean hasToilet;
+    private boolean hasBalcony;
+    private boolean hasMinibar;
+    private boolean hasTV;
+    private String description;
+
+
+<span class="fc" id="L16">    public Room(String id, double area, int floor, boolean hasKingSizeBed, int countBed, boolean hasToilet,</span>
+            boolean hasBalcony, boolean hasMinibar, boolean hasTV, String description) {
+<span class="fc" id="L18">        this.id = id;</span>
+<span class="fc" id="L19">        this.area = area;</span>
+<span class="fc" id="L20">        this.floor = floor;</span>
+<span class="fc" id="L21">        this.hasKingSizeBed = hasKingSizeBed;</span>
+<span class="fc" id="L22">        this.countBed = countBed;</span>
+<span class="fc" id="L23">        this.hasToilet = hasToilet;</span>
+<span class="fc" id="L24">        this.hasBalcony = hasBalcony;</span>
+<span class="fc" id="L25">        this.hasMinibar = hasMinibar;</span>
+<span class="fc" id="L26">        this.hasTV = hasTV;</span>
+<span class="fc" id="L27">        this.description = description;</span>
+<span class="fc" id="L28">    }</span>
+
+    public String getId() {
+<span class="fc" id="L31">        return this.id;</span>
+    }
+
+    public void setId(String id) {
+<span class="nc" id="L35">        this.id = id;</span>
+<span class="nc" id="L36">    }</span>
+
+    public double getArea() {
+<span class="fc" id="L39">        return this.area;</span>
+    }
+
+    public void setArea(double area) {
+<span class="nc" id="L43">        this.area = area;</span>
+<span class="nc" id="L44">    }</span>
+
+    public void setFloor(int floor) {
+<span class="nc" id="L47">        this.floor = floor;</span>
+<span class="nc" id="L48">    }</span>
+
+    public int getFloor() {
+<span class="fc" id="L51">        return this.floor;</span>
+    }
+
+    public void setHasKingSizeBed(boolean hasKingSizeBed) {
+<span class="nc" id="L55">        this.hasKingSizeBed = hasKingSizeBed;</span>
+<span class="nc" id="L56">    }</span>
+
+    public boolean getHasKingSizeBed() {
+<span class="fc" id="L59">        return this.hasKingSizeBed;</span>
+    }
+
+    public void setCountBed(int countBed) {
+<span class="nc" id="L63">        this.countBed = countBed;</span>
+<span class="nc" id="L64">    }</span>
+
+    public int getCountBed() {
+<span class="nc" id="L67">        return this.countBed;</span>
+    }
+
+    public void setHasToilet(boolean hasToilet) {
+<span class="nc" id="L71">        this.hasToilet = hasToilet;</span>
+<span class="nc" id="L72">    }</span>
+
+    public boolean getHasToilet() {
+<span class="nc" id="L75">        return this.hasToilet;</span>
+    }
+
+    public void setHasBalcony(boolean hasBalcony) {
+<span class="nc" id="L79">        this.hasBalcony = hasBalcony;</span>
+<span class="nc" id="L80">    }</span>
+
+    public boolean getHasBalcony() {
+<span class="nc" id="L83">        return this.hasBalcony;</span>
+    }
+
+    public void setHasMinibar(boolean hasMinibar) {
+<span class="nc" id="L87">        this.hasMinibar = hasMinibar;</span>
+<span class="nc" id="L88">    }</span>
+
+    public boolean getHasMinibar() {
+<span class="nc" id="L91">        return this.hasMinibar;</span>
+    }
+
+    public void setHasTV(boolean hasTV) {
+<span class="nc" id="L95">        this.hasTV = hasTV;</span>
+<span class="nc" id="L96">    }</span>
+
+    public boolean getHasTV() {
+<span class="nc" id="L99">        return this.hasTV;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L103">        this.description = description;</span>
+<span class="nc" id="L104">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L107">        return this.description;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L112">        return &quot;Room number: &quot; + id;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

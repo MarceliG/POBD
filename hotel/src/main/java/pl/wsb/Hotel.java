@@ -1,11 +1,23 @@
 package pl.wsb;
 
-import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
+import pl.wsb.client.Client;
+import pl.wsb.exceptions.ClientNotFoundException;
+import pl.wsb.exceptions.ReservationNotFoundException;
+import pl.wsb.exceptions.RoomNotFoundException;
+import pl.wsb.exceptions.RoomReservedException;
+import pl.wsb.interfaces.HotelCapability;
+import pl.wsb.room.Room;
+import pl.wsb.room.RoomReservation;
+import pl.wsb.service.SpecialService;
 
 
-public class Hotel {
+public class Hotel implements HotelCapability {
     private String name;
     private List<SpecialService> specialServices;
     private List<Client> clients;
@@ -72,20 +84,160 @@ public class Hotel {
         return this.rooms;
     }
 
-    // Display all arguments for testing
-    public String getAllInformation() {
-        StringBuilder sb = new StringBuilder();
-        Class<?> thisClass = this.getClass();
-        Field[] fields = thisClass.getDeclaredFields();
+    public String addClient(String firstName, String lastName, LocalDate birthDate) {
+        Client client = new Client(UUID.randomUUID().toString(), firstName, lastName, birthDate, "", "", "", "", null);
+        this.clients.add(client);
 
-        for (Field field : fields) {
-            try {
-                Object value = field.get(this);
-                sb.append(field.getName()).append(": ").append(value).append("\n");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+        return client.getId();
+    }
+
+    public String getClientFullName(String clientId) {
+        for (Client client : clients) {
+            if (client.getId().equals(clientId)) {
+                return client.getFullName();
             }
         }
-        return sb.toString();
+
+        return null;
     }
+
+    public int getNumberOfUnderageClients() {
+        int count = 0;
+        LocalDate currentDate = LocalDate.now();
+
+        for (Client client : clients) {
+            if (client.getBirthDate() != null) {
+                int age = Period.between(client.getBirthDate(), currentDate).getYears();
+                if (age < 18) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    public String addRoom(double area, int floor, boolean hasKingSizeBed, String description) {
+        Room room = new Room(UUID.randomUUID().toString(), area, floor, hasKingSizeBed, 1, true, true, true, true,
+                description);
+
+        this.rooms.add(room);
+
+        return room.getId();
+    }
+
+    public double getRoomArea(String roomId) {
+        for (Room room : rooms) {
+            if (room.getId().equals(roomId)) {
+                return room.getArea();
+            }
+        }
+
+        return Double.NaN;
+    }
+
+
+    public int getNumberOfRoomsWithKingSizeBed(int floor) {
+        int count = 0;
+        for (Room room : rooms) {
+            if (room.getHasKingSizeBed() && room.getFloor() == floor) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public String addNewReservation(String clientId, String roomId, LocalDate date)
+            throws RoomNotFoundException, ClientNotFoundException {
+        Client searchClient = null;
+        for (Client client : clients) {
+            if (client.getId().equals(clientId)) {
+                searchClient = client;
+            }
+        }
+
+        if (searchClient == null) {
+            throw new ClientNotFoundException("Client not found: " + clientId);
+        }
+
+        Room searchRoom = null;
+        for (Room room : rooms) {
+            if (room.getId().equals(roomId)) {
+                searchRoom = room;
+            }
+        }
+
+        if (searchRoom == null) {
+            throw new RoomNotFoundException("Room not found: " + roomId);
+        }
+
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getDate().equals(date)) {
+                throw new RoomReservedException("This date is reserved", date);
+            }
+        }
+
+        RoomReservation reservation = new RoomReservation(date, false, searchClient, searchRoom);
+        this.reservations.add(reservation);
+
+        return reservation.getId();
+    }
+
+    public String confirmReservation(String reservationId) throws ReservationNotFoundException {
+        RoomReservation searchReservation = null;
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getId().equals(reservationId)) {
+                searchReservation = reservation;
+            }
+        }
+
+        if (searchReservation == null) {
+            throw new ReservationNotFoundException("Reservation do not exists");
+        }
+
+        return searchReservation.getId();
+    }
+
+    public boolean isRoomReserved(String roomId, LocalDate date) throws RoomNotFoundException {
+        Room foundRoom = null;
+        for (Room room : rooms) {
+            if (room.getId().equals(roomId)) {
+                foundRoom = room;
+                break;
+            }
+        }
+
+        if (foundRoom == null) {
+            throw new RoomNotFoundException("Room not found: " + roomId);
+        }
+
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getRoom().getId().equals(roomId) && reservation.getDate().equals(date)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public int getNumberOfUnconfirmedReservation(LocalDate date) {
+        int count = 0;
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getDate().equals(date) && !reservation.isConfirmed()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Collection<String> getRoomIdsReservedByClient(String clientId) {
+        Collection<String> reservedRoomIds = new ArrayList<>();
+        for (RoomReservation reservation : reservations) {
+            if (reservation.getClient().getId().equals(clientId)) {
+                reservedRoomIds.add(reservation.getRoom().getId());
+            }
+        }
+        return reservedRoomIds;
+    }
+
 }
