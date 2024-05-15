@@ -1,82 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="HotelTest" time="0.175" tests="22" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="HotelTest" time="0.294" tests="13" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="17"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
-    <property name="sun.jnu.encoding" value="Cp1250"/>
-    <property name="java.class.path" value="E:\Programowanie\StudiaMerito\POBD\POBD\hotel\target\test-classes;E:\Programowanie\StudiaMerito\POBD\POBD\hotel\target\classes;C:\Users\adamm\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\adamm\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\adamm\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\adamm\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\adamm\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\adamm\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
-    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/marceli/wsb/POBD/hotel/target/test-classes:/home/marceli/wsb/POBD/hotel/target/classes:/home/marceli/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar:/home/marceli/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:/home/marceli/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/marceli/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/marceli/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/marceli/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
+    <property name="java.vm.vendor" value="Private Build"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="java.vendor.url" value="Unknown"/>
     <property name="user.timezone" value="Europe/Warsaw"/>
-    <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="17"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="PL"/>
-    <property name="sun.boot.library.path" value="C:\Users\adamm\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.10.7-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\adamm\AppData\Local\Temp\surefire15166471576767413083\surefirebooter-20240515170644871_3.jar C:\Users\adamm\AppData\Local\Temp\surefire15166471576767413083 2024-05-15T17-06-44_301-jvmRun1 surefire-20240515170644871_1tmp surefire_0-20240515170644871_2tmp"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/marceli/wsb/POBD/hotel/target/surefire/surefirebooter-20240515181740261_3.jar /home/marceli/wsb/POBD/hotel/target/surefire 2024-05-15T18-17-39_810-jvmRun1 surefire-20240515181740261_1tmp surefire_0-20240515181740261_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="E:\Programowanie\StudiaMerito\POBD\POBD\hotel\target\test-classes;E:\Programowanie\StudiaMerito\POBD\POBD\hotel\target\classes;C:\Users\adamm\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\adamm\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\adamm\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\adamm\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\adamm\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\adamm\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="surefire.test.class.path" value="/home/marceli/wsb/POBD/hotel/target/test-classes:/home/marceli/wsb/POBD/hotel/target/classes:/home/marceli/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar:/home/marceli/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:/home/marceli/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/marceli/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/marceli/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/marceli/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\adamm"/>
-    <property name="user.language" value="pl"/>
+    <property name="user.home" value="/home/marceli"/>
+    <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2024-01-16"/>
-    <property name="java.home" value="C:\Users\adamm\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.10.7-hotspot"/>
-    <property name="file.separator" value="\"/>
-    <property name="basedir" value="E:\Programowanie\StudiaMerito\POBD\POBD\hotel"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.home" value="/usr/lib/jvm/java-21-openjdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/marceli/wsb/POBD/hotel"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\adamm\AppData\Local\Temp\surefire15166471576767413083\surefirebooter-20240515170644871_3.jar"/>
-    <property name="user.script" value=""/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/home/marceli/wsb/POBD/hotel/target/surefire/surefirebooter-20240515181740261_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.10+7"/>
-    <property name="user.name" value="adamm"/>
-    <property name="path.separator" value=";"/>
-    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.version" value="21.0.2+13-Ubuntu-120.04.1"/>
+    <property name="user.name" value="marceli"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.146.1-microsoft-standard-WSL2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="file.encoding" value="Cp1250"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="Temurin-17.0.10+7"/>
-    <property name="localRepository" value="C:\Users\adamm\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
-    <property name="java.io.tmpdir" value="C:\Users\adamm\AppData\Local\Temp\"/>
-    <property name="java.version" value="17.0.10"/>
-    <property name="user.dir" value="E:\Programowanie\StudiaMerito\POBD\POBD\hotel"/>
+    <property name="localRepository" value="/home/marceli/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="Unknown"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="21.0.2"/>
+    <property name="user.dir" value="/home/marceli/wsb/POBD/hotel"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="sun.os.patch.level" value=""/>
-    <property name="native.encoding" value="Cp1250"/>
-    <property name="java.library.path" value="C:\Users\adamm\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.10.7-hotspot\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Eclipse Adoptium\jdk-21.0.2.13-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;D:\Programy\apache-maven-3.9.6\bin;C:\Users\adamm\AppData\Local\Yarn\config\global\node_modules\.bin;C:\Users\adamm\AppData\Roaming\Composer\vendor\bin;C:\Users\adamm\AppData\Roaming\npm;D:\Programy\laragon\bin;D:\Programy\laragon\bin\apache\httpd-2.4.54-win64-VS16\bin;D:\Programy\laragon\bin\composer;D:\Programy\laragon\bin\git\bin;D:\Programy\laragon\bin\git\cmd;D:\Programy\laragon\bin\git\mingw64\bin;D:\Programy\laragon\bin\git\usr\bin;D:\Programy\laragon\bin\laragon\utils;D:\Programy\laragon\bin\mysql\mysql-8.0.30-winx64\bin;D:\Programy\laragon\bin\nginx\nginx-1.22.0;D:\Programy\laragon\bin\ngrok;D:\Programy\laragon\bin\nodejs\node-v18;D:\Programy\laragon\bin\notepad++;D:\Programy\laragon\bin\php\php-8.1.10-Win32-vs16-x64;D:\Programy\laragon\bin\python\python-3.10;D:\Programy\laragon\bin\python\python-3.10\Scripts;D:\Programy\laragon\bin\redis\redis-x64-5.0.14.1;D:\Programy\laragon\bin\telnet;D:\Programy\laragon\usr\bin;C:\Users\adamm\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.10.7-hotspot\bin;C:\Users\adamm\AppData\Local\Microsoft\WindowsApps;C:\Users\adamm\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="Eclipse Adoptium"/>
-    <property name="java.vm.version" value="17.0.10+7"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Private Build"/>
+    <property name="java.vm.version" value="21.0.2+13-Ubuntu-120.04.1"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="61.0"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testIsRoomReserved" classname="HotelTest" time="0.104"/>
-  <testcase name="testGetNumberOfRoomsWithKingSizeBed" classname="HotelTest" time="0.002"/>
-  <testcase name="testAddRoom" classname="HotelTest" time="0.002"/>
-  <testcase name="testAddNewReservationClientNotFound" classname="HotelTest" time="0.003"/>
-  <testcase name="testSetClients" classname="HotelTest" time="0.001"/>
-  <testcase name="testAddNewReservation" classname="HotelTest" time="0.0"/>
-  <testcase name="testAddNewReservationRoomNotFound" classname="HotelTest" time="0.001"/>
-  <testcase name="testGetName" classname="HotelTest" time="0.002"/>
-  <testcase name="testGetRoomsIsEmpty" classname="HotelTest" time="0.0"/>
-  <testcase name="testGetReservationsIsEmpty" classname="HotelTest" time="0.001"/>
-  <testcase name="testAddClient" classname="HotelTest" time="0.001"/>
-  <testcase name="testGetSpecialServices" classname="HotelTest" time="0.001"/>
-  <testcase name="testSetReservations" classname="HotelTest" time="0.001"/>
-  <testcase name="testGetClients" classname="HotelTest" time="0.0"/>
-  <testcase name="testGetRoomArea" classname="HotelTest" time="0.001"/>
-  <testcase name="testGetRoomIdsReservedByClient" classname="HotelTest" time="0.001"/>
-  <testcase name="testGetNumberOfUnderageClients" classname="HotelTest" time="0.002"/>
-  <testcase name="testSetName" classname="HotelTest" time="0.002"/>
-  <testcase name="testSetRoom" classname="HotelTest" time="0.0"/>
-  <testcase name="testAddNewReservationRoomReserved" classname="HotelTest" time="0.001"/>
-  <testcase name="testConfirmReservation" classname="HotelTest" time="0.001"/>
-  <testcase name="testSetSpecialServices" classname="HotelTest" time="0.002"/>
+  <testcase name="testIsRoomReserved" classname="HotelTest" time="0.13"/>
+  <testcase name="testGetNumberOfRoomsWithKingSizeBed" classname="HotelTest" time="0.004"/>
+  <testcase name="testAddRoom" classname="HotelTest" time="0.005"/>
+  <testcase name="testAddNewReservationClientNotFound" classname="HotelTest" time="0.005"/>
+  <testcase name="testAddNewReservation" classname="HotelTest" time="0.004"/>
+  <testcase name="testAddNewReservationRoomNotFound" classname="HotelTest" time="0.004"/>
+  <testcase name="testGetRoomsIsEmpty" classname="HotelTest" time="0.005"/>
+  <testcase name="testAddClient" classname="HotelTest" time="0.006"/>
+  <testcase name="testGetRoomArea" classname="HotelTest" time="0.005"/>
+  <testcase name="testGetRoomIdsReservedByClient" classname="HotelTest" time="0.003"/>
+  <testcase name="testGetNumberOfUnderageClients" classname="HotelTest" time="0.006"/>
+  <testcase name="testAddNewReservationRoomReserved" classname="HotelTest" time="0.005"/>
+  <testcase name="testConfirmReservation" classname="HotelTest" time="0.006"/>
 </testsuite>

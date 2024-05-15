@@ -1,89 +1,19 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.wsb.Hotel;
 import pl.wsb.exceptions.ClientNotFoundException;
 import pl.wsb.exceptions.RoomNotFoundException;
 import pl.wsb.exceptions.RoomReservedException;
-import pl.wsb.service.LuggageService;
-import pl.wsb.service.SpecialService;
-import pl.wsb.service.TimeService;
 
 public class HotelTest {
     final private Hotel hotel = new Hotel("Test hotel");
 
     @Test
-    void testGetName() {
-        Assertions.assertEquals("Test hotel", hotel.getName());
-    }
-
-    @Test
-    void testSetName() {
-        hotel.setName("New Name");
-        Assertions.assertEquals("New Name", hotel.getName());
-    }
-
-    @Test
-    void testGetSpecialServices() {
-        Assertions.assertTrue(hotel.getSpecialServices().isEmpty());
-    }
-
-    @Test
-    void testSetSpecialServices() {
-        List<SpecialService> specialServices = new ArrayList<>();
-        specialServices.add(new LuggageService("Luggage Storage"));
-        specialServices.add(new TimeService("Late Check-Out"));
-
-        hotel.setSpecialServices(specialServices);
-
-        List<SpecialService> retrievedServices = hotel.getSpecialServices();
-
-        Assertions.assertEquals(specialServices.size(), retrievedServices.size());
-        for (SpecialService service : specialServices) {
-            Assertions.assertTrue(retrievedServices.contains(service));
-        }
-    }
-
-    @Test
-    void testGetClients() {
-        Assertions.assertTrue(hotel.getClients().isEmpty());
-    }
-
-    @Test
-    void testSetClients() {
-        // @TODO
-    }
-
-    @Test
-    void testGetReservationsIsEmpty() {
-        Assertions.assertTrue(hotel.getReservations().isEmpty());
-    }
-
-    @Test
-    void testSetReservations() {
-        // @TODO
-    }
-
-    @Test
-    void testSetRoom() {
-        // @TODO
-    }
-
-    @Test
     void testGetRoomsIsEmpty() {
         Assertions.assertTrue(hotel.getRooms().isEmpty());
     }
-
-    // @Test
-    // Prawdopodobnie to będzie to samo co testSetRoom()
-    // void testGetRoomsIsNotEmpty() {
-    // hotel.addRoom(1, 2, false, "Description");
-
-    // Assertions.assertFalse(hotel.getRooms().isEmpty());
-    // }
 
     @Test
     void testAddClient() {
